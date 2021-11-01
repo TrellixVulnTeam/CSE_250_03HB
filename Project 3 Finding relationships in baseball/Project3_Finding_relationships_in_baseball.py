@@ -6,7 +6,7 @@ import altair as alt
 
 # GQ 1) Write an SQL query to create a new dataframe about baseball players who attended BYU-Idaho. The new table should contain five columns: playerID, schoolID, salary, and the yearID/teamID associated with each salary. Order the table by salary (highest to lowest) and print out the table in your report.
 
-gq1 = dw.query('byuidss/cse-250-baseball-database',
+gq1 = dw.query('byuidss/cse-250-baseball-database', 
     """
     SELECT DISTINCT s.playerID AS PlayerID, 
                     schoolID AS SchoolID, 
@@ -19,9 +19,7 @@ gq1 = dw.query('byuidss/cse-250-baseball-database',
     WHERE cp.schoolid = "idbyuid"
     ORDER BY s.salary DESC
     """)
-gq1.dataframe
-
-
+print(gq1.dataframe.to_markdown())
 
 
 # %%
@@ -42,7 +40,8 @@ gq2_1 = dw.query('byuidss/cse-250-baseball-database',
     ORDER BY batting_avg DESC, playerID
     LIMIT 5
     """)
-gq2_1.dataframe
+print(gq2_1.dataframe.to_markdown())
+
 
 #%%
 # 2.2) Use the same query as above, but only include players with at least 10 at bats that year. Print the top 5 results.
@@ -59,7 +58,7 @@ gq2_2 = dw.query('byuidss/cse-250-baseball-database',
     ORDER BY batting_avg DESC, playerID
     LIMIT 5
     """)
-gq2_2.dataframe
+print(gq2_2.dataframe.to_markdown())
 
 # %%
 # 2.3) Now calculate the batting average for players over their entire careers (all years combined). Only include players with at least 100 at bats, and print the top 5 results.
@@ -74,7 +73,7 @@ gq2_3 = dw.query('byuidss/cse-250-baseball-database',
     ORDER BY batting_avg DESC, playerid
     LIMIT 5
     """)
-gq2_3.dataframe
+print(gq2_3.dataframe.to_markdown())
 
 # %%
 # Pick any two baseball teams and compare them using a metric of your choice (average salary, home runs, number of wins, etc). Write an SQL query to get the data you need, then make a graph in Altair to visualize the comparison.
